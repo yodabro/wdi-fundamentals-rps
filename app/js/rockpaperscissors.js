@@ -75,7 +75,7 @@ function getComputerMove(move) {
 }
 
 
-function playToFive() {
+function playToFive(x) {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
@@ -84,19 +84,36 @@ function playToFive() {
 
     var playerMove;
     var computerMove;
-    var gambler;
+    var winner;
 
-    while (playerWins < 5 && computerWins < 5) {
-        playerMove = getPlayerMove(null);
-        computerMove = getComputerMove(null);
-        gambler = getWinner (playerMove, computerMove);
-        if (gambler == "player") {
-            playerWins++;
+    while (playerWins < x+1 || computerWins < x+1) {
+        playerMove = getPlayerMove();
+        computerMove = getComputerMove();
+        winner = getWinner (playerMove, computerMove);
+        console.log("Player's move is " + playerMove + "\nComputer's move is " + computerMove);
+        console.log("The winner this round is " + winner);
+        
+        if (winner == "player") {
+            playerWins +=1;
+            console.log("The score is Player: " + playerWins + " to " + computerWins + " :Computer");
+            if (playerWins == x) {
+                    console.log("Congratulations! You Win!");
+                    break;
+                }
+        }else if (winner == "computer") {
+            computerWins +=1;
+            console.log("The score is Player: " + playerWins + " to " + computerWins + " :Computer");
+
+            if (computerWins == x) {
+                console.log("Oh No! The Computer Won!");
+                break;
+            };
+
+        }else if(winner == "tie"){
+            console.log("The score is Player: " + playerWins + " to " + computerWins + " :Computer");
         }
-        if (gambler == "computer") {
-            computerWins++;
-        }
-        if (gambler == "tie") {}
-     return [playerWins, computerWins];
      }
+
+     console.log("The final score is: ");  
+     return [playerWins, computerWins];
 }
