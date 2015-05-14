@@ -117,3 +117,5 @@ function playToFive(x) {
      console.log("The final score is: ");  
      return [playerWins, computerWins];
 }
+playToFive(5);
+
